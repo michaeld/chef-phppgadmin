@@ -1,8 +1,8 @@
-name              'phpmyadmin'
-maintainer        'Panagiotis PJ Papadomitsos'
-maintainer_email  'pj@ezgr.net'
+name              'chef-phppgadmin'
+maintainer        'Tom Ligda'
+maintainer_email  'tligda@ncomputing.com'
 license           'Apache Public License 2.0'
-description       'Installs/Configures PHPMyAdmin'
+description       'Installs/Configures PHPPgAdmin'
 long_description   IO.read(File.join(File.dirname(__FILE__), 'README.md')).chomp
 version            IO.read(File.join(File.dirname(__FILE__), 'VERSION')).chomp rescue '0.1.0'
 
@@ -12,92 +12,92 @@ recommends        'nginx'
 recommends        'apache2'
   
 suggests          'percona'
-suggests          'mysql'
+suggests          'postgresql'
 
 supports          'ubuntu', '>= 12.04'
 supports          'debian', '>= 6.0'
 supports          'centos', '>= 6.0'
 supports          'redhat', '>= 9.0'
 
-attribute 'phpmyadmin/version',
-  :display_name => 'PHPMyAdmin version',
-  :description => 'The desired PMA version'
+attribute 'phppgadmin/version',
+  :display_name => 'PHPPgAdmin version',
+  :description => 'The desired PPA version'
 
-attribute 'phpmyadmin/checksum',
-  :display_name => 'PHPMyAdmin archive checksum',
-  :description => 'The sha256 checksum of the PMA desired version'
+attribute 'phppgadmin/checksum',
+  :display_name => 'PHPPgAdmin archive checksum',
+  :description => 'The sha256 checksum of the PPA desired version'
 
-attribute 'phpmyadmin/mirror',
-  :display_name => 'PHPMyAdmin download mirror',
-  :description => 'The desired PMA download mirror',
+attribute 'phppgadmin/mirror',
+  :display_name => 'PHPPgAdmin download mirror',
+  :description => 'The desired PPA download mirror',
   :default => 'http://netcologne.dl.sourceforge.net/project/phpmyadmin/phpMyAdmin'
 
-attribute 'phpmyadmin/fpm',
-  :display_name => 'PHPMyAdmin FPM instance',
-  :description => 'Enables the PMA FPM instance for serving via NGINX',
+attribute 'phppgadmin/fpm',
+  :display_name => 'PHPPgAdmin FPM instance',
+  :description => 'Enables the PPA FPM instance for serving via NGINX',
   :default => 'true'
 
-attribute 'phpmyadmin/home',
-  :display_name => 'PHPMyAdmin home',
-  :description => 'The desired PMA installation home',
+attribute 'phppgadmin/home',
+  :display_name => 'PHPPgAdmin home',
+  :description => 'The desired PPA installation home',
   :default => '/opt/phpmyadmin'
 
-attribute 'phpmyadmin/user',
-  :display_name => 'PHPMyAdmin user',
-  :description => 'The user PMA runs as',
+attribute 'phppgadmin/user',
+  :display_name => 'PHPPgAdmin user',
+  :description => 'The user PPA runs as',
   :default => 'phpmyadmin'
 
-attribute 'phpmyadmin/group',
-  :display_name => 'PHPMyAdmin group',
-  :description => 'The group PMA runs as',
+attribute 'phppgadmin/group',
+  :display_name => 'PHPPgAdmin group',
+  :description => 'The group PPA runs as',
   :default => 'phpmyadmin'
 
-attribute 'phpmyadmin/blowfish_secret',
-  :display_name => 'PHPMyAdmin blowfish secret',
-  :description => 'The encryption key for PHPMyAdmin',
+attribute 'phppgadmin/blowfish_secret',
+  :display_name => 'PHPPgAdmin blowfish secret',
+  :description => 'The encryption key for PHPPgAdmin',
   :default => '7654588cf9f0f92f01a6aa361d02c0cf038'
 
-attribute 'phpmyadmin/socket',
-  :display_name => 'PHPMyAdmin FPM socket',
-  :description => 'The socket that FPM will be exposing for PMA',
-  :default => '/tmp/phpmyadmin.sock'
+attribute 'phppgadmin/socket',
+  :display_name => 'PHPPgAdmin FPM socket',
+  :description => 'The socket that FPM will be exposing for PPA',
+  :default => '/tmp/phppgadmin.sock'
 
-attribute 'phpmyadmin/upload_dir',
-  :display_name => 'PHPMyAdmin upload directory',
-  :description => 'The directory PMA will be using for uploads',
+attribute 'phppgadmin/upload_dir',
+  :display_name => 'PHPPgAdmin upload directory',
+  :description => 'The directory PPA will be using for uploads',
   :calculated => true
 
-attribute 'phpmyadmin/save_dir',
-  :display_name => 'PHPMyAdmin save directory',
-  :description => 'The directory PMA will be using for file saves',
+attribute 'phppgadmin/save_dir',
+  :display_name => 'PHPPgAdmin save directory',
+  :description => 'The directory PPA will be using for file saves',
   :calculated => true
 
-attribute 'phpmyadmin/maxrows',
-  :display_name => 'PHPMyAdmin maximum rows',
-  :description => 'The maximum rows PMA shall display in a table view',
+attribute 'phppgadmin/maxrows',
+  :display_name => 'PHPPgAdmin maximum rows',
+  :description => 'The maximum rows PPA shall display in a table view',
   :default => '100'
 
-attribute 'phpmyadmin/protect_binary',
-  :display_name => 'PHPMyAdmin binary field protection',
-  :description => 'Define the binary field protection PMA will be using',
+attribute 'phppgadmin/protect_binary',
+  :display_name => 'PHPPgAdmin binary field protection',
+  :description => 'Define the binary field protection PPA will be using',
   :default => 'blob'
 
-attribute 'phpmyadmin/default_lang',
-  :display_name => 'PHPMyAdmin default language',
-  :description => 'The default language PMA will be using',
+attribute 'phppgadmin/default_lang',
+  :display_name => 'PHPPgAdmin default language',
+  :description => 'The default language PPA will be using',
   :default => 'en'
 
-attribute 'phpmyadmin/default_display',
-  :display_name => 'PHPMyAdmin default row display',
-  :description => 'The default display of rows inside PMA',
+attribute 'phppgadmin/default_display',
+  :display_name => 'PHPPgAdmin default row display',
+  :description => 'The default display of rows inside PPA',
   :default => 'horizontal'
 
-attribute 'phpmyadmin/query_history',
-  :display_name => 'PHPMyAdmin query history',
+attribute 'phppgadmin/query_history',
+  :display_name => 'PHPPgAdmin query history',
   :description => 'Enable or disable the Javascript query history',
   :default => 'true'
 
-attribute 'phpmyadmin/query_history_size',
-  :display_name => 'PHPMyAdmin query history size',
+attribute 'phppgadmin/query_history_size',
+  :display_name => 'PHPPgAdmin query history size',
   :description => 'Set the maximum size of the Javascript query history',
   :default => '100'

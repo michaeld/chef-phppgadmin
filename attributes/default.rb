@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: phpmyadmin
+# Cookbook Name:: phppgadmin
 # Attributes:: default
 #
-# Copyright 2012, Panagiotis Papadomitsos
+# Copyright 2014, Tom Ligda
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,32 +17,34 @@
 # limitations under the License.
 #
 
-default['phpmyadmin']['version'] = '4.1.4'
-default['phpmyadmin']['checksum'] = '6eb31776c196c855f5a084eca2782ab350a362644ee20344b1f261a4fdabab56'
-default['phpmyadmin']['mirror'] = 'http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin'
+default['phppgadmin']['version'] = '5.1'
+default['phppgadmin']['checksum'] = '42294e7b19d3b4003912eaad9a34df4096c038' \
+  '0871aedce152aa13d4955878a5'
+default['phppgadmin']['mirror'] = 'http://sourceforge.net/projects/' \
+  'phppgadmin/files/phpPgAdmin%20%5Bstable%5D'
 
-default['phpmyadmin']['fpm'] = true
+default['phppgadmin']['fpm'] = true
 
-default['phpmyadmin']['home'] = '/opt/phpmyadmin'
-default['phpmyadmin']['user'] = 'phpmyadmin'
-default['phpmyadmin']['group'] = 'phpmyadmin'
-default['phpmyadmin']['socket'] = '/tmp/phpmyadmin.sock'
+default['phppgadmin']['home'] = '/opt/phppgadmin'
+default['phppgadmin']['user'] = 'phppgadmin'
+default['phppgadmin']['group'] = 'phppgadmin'
+default['phppgadmin']['socket'] = '/tmp/phppgadmin.sock'
 
 if Chef::Config[:solo]
-  default['phpmyadmin']['blowfish_secret'] = '7654588cf9f0f92f01a6aa361d02c0cf038'
+  default['phppgadmin']['blowfish_secret'] = '7654588cf9f0f92f01a6aa361d02c0cf038'
 end
 
 case node['platform_family']
 when 'debian'
-  default['phpmyadmin']['upload_dir'] = '/var/lib/php5/uploads'
-  default['phpmyadmin']['save_dir'] = '/var/lib/php5/uploads'
+  default['phppgadmin']['upload_dir'] = '/var/lib/php5/uploads'
+  default['phppgadmin']['save_dir'] = '/var/lib/php5/uploads'
 when 'rhel'
-  default['phpmyadmin']['upload_dir'] = '/var/lib/php/uploads'
-  default['phpmyadmin']['save_dir'] = '/var/lib/php/uploads'
+  default['phppgadmin']['upload_dir'] = '/var/lib/php/uploads'
+  default['phppgadmin']['save_dir'] = '/var/lib/php/uploads'
 end
-default['phpmyadmin']['maxrows'] = 100
-default['phpmyadmin']['protect_binary'] = 'blob'
-default['phpmyadmin']['default_lang'] = 'en'
-default['phpmyadmin']['default_display'] = 'horizontal'
-default['phpmyadmin']['query_history'] = true
-default['phpmyadmin']['query_history_size'] = 100
+default['phppgadmin']['maxrows'] = 100
+default['phppgadmin']['protect_binary'] = 'blob'
+default['phppgadmin']['default_lang'] = 'en'
+default['phppgadmin']['default_display'] = 'horizontal'
+default['phppgadmin']['query_history'] = true
+default['phppgadmin']['query_history_size'] = 100
