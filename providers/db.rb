@@ -22,11 +22,11 @@ action :create do
 	new_resource.hide_dbs = [ new_resource.hide_dbs ] if new_resource.hide_dbs.instance_of?(String)
 	new_resource.updated_by_last_action(false)
 
-	a = template "#{node['phpmyadmin']['home']}/conf.d/#{new_resource.name.downcase.gsub(' ','_')}.inc.php" do
-		cookbook 'phpmyadmin'
+	a = template "#{node['phppgadmin']['home']}/conf.d/#{new_resource.name.downcase.gsub(' ','_')}.inc.php" do
+		cookbook 'chef-phppgadmin'
 		source 'dbinstance.inc.php.erb'
-		owner node['phpmyadmin']['user']
-		group node['phpmyadmin']['group']
+		owner node['phppgadmin']['user']
+		group node['phppgadmin']['group']
 		variables({
 			:name => new_resource.name,
 			:host => new_resource.host,
@@ -50,7 +50,7 @@ action :delete do
 	Chef::Log.info("Removing PHPMyAdmin database profile for: #{new_resource.name}")
 	new_resource.updated_by_last_action(false)
 
-	a = file "#{node['phpmyadmin']['home']}/conf.d/#{new_resource.name.downcase.gsub(' ','_')}.inc.php" do
+	a = file "#{node['phppgadmin']['home']}/conf.d/#{new_resource.name.downcase.gsub(' ','_')}.inc.php" do
 		action :delete
 	end
 
