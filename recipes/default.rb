@@ -71,7 +71,6 @@ end
 
 # Download the selected PHPPgAdmin archive
 remote_file "#{Chef::Config['file_cache_path']}/phpPgAdmin-" \
-  "#{node['phppgadmin']['version']}/phpPgAdmin-" \
   "#{node['phppgadmin']['version']}.tar.gz" do
   owner user
   group group
@@ -89,7 +88,7 @@ bash 'extract-phppgadmin' do
 	cwd home
 	code <<-EOH
 		rm -fr *
-		tar xzf #{Chef::Config['file_cache_path']}/phpPgAdmin-#{node['phppgadmin']['version']}/phpPgAdmin-#{node['phppgadmin']['version']}.tar.gz
+		tar xzf #{Chef::Config['file_cache_path']}/phpPgAdmin-#{node['phppgadmin']['version']}.tar.gz
 		mv phpPgAdmin-#{node['phppgadmin']['version']} #{home}/
 	EOH
 	not_if { ::File.exists?("#{home}/phpPgAdmin-#{node['phppgadmin']['version']}")}
